@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* ▶ Target & libraries */
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "typeRoots": ["src/@types", "node_modules/@types"],
+
+    /* ▶ Module / resolution */
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+
+    /* ▶ Strictness & helpers */
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    /* ▶ Path alias (needs baseUrl) */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+
+  /* ▶ What to compile */
+  "include": ["src"],
+
+  /* ▶ Reference the Node-only config */
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

@@ -1,0 +1,23 @@
+// tsconfig.node.json
+{
+  "compilerOptions": {
+    "composite": true,              /* required for project references */
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+
+    /* bundler-mode settings */
+    "moduleResolution": "bundler",
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+
+    /* lint-style flags */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "skipLibCheck": true
+  },
+  "include": ["vite.config.ts"]
+}
