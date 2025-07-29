@@ -34,14 +34,14 @@ export default function Home() {
   };
 
   const handleSubmit = () => {
-    const allCorrect = inputs.every(
-      (entry, idx) => entry === inputConfigs[idx].password
-    );
+    const allCorrect = inputs.every((entry, idx) => {
+      // compare both sides lowercased to ignore case
+      return entry.trim().toLowerCase() === inputConfigs[idx].password.toLowerCase();
+    });
 
     if (allCorrect) {
       navigate('/player');
     } else {
-      // use your standalone toast function
       toast({
         title: 'Incorrect entry',
         description:
@@ -66,9 +66,17 @@ export default function Home() {
           transition={{ duration: 0.8 }}
         >
           <VStack gap={6}>
-            <Heading size="lg" color="vine.700">
-              A Walk in the Clouds
-            </Heading>
+            <Heading
+  fontFamily="'Great Vibes', cursive"
+  fontSize="6xl"
+  color="vine.700"
+  textAlign="center"
+  letterSpacing="tight"
+  mb={6}
+>
+  A Walk in the Clouds
+</Heading>
+
 
             {inputConfigs.map((cfg, idx) => (
               <Input
