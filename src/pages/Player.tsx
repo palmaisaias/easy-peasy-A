@@ -1,11 +1,10 @@
+'use client';
+
 import { Box, AspectRatio } from "@chakra-ui/react";
 import CloudBackground from "../components/CloudBackground";
 
-/**
- * DigitalOcean link – replace with your actual object-storage URL
- */
-const VIDEO_SRC =
-  "https://a-grape-walk.sfo3.cdn.digitaloceanspaces.com";
+/** … */
+const VIDEO_SRC = "https://a-grape-walk.sfo3.cdn.digitaloceanspaces.com/A.Walk.In.The.Clouds.1995.720p.BluRay.x264-ESub.Hollymoviehd.mp4";
 
 const Player = () => (
   <CloudBackground>
