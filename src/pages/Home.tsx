@@ -1,52 +1,57 @@
-import { Box, Button, Heading, Input, VStack } from "@chakra-ui/react"
-import { motion } from "framer-motion"
-import { useNavigate } from "react-router-dom"
-import { useState } from "react"
-import CloudBackground from "../components/CloudBackground"
-import { toaster } from "@/components/ui/toaster"
+// src/pages/Home.tsx
+'use client';
 
-const MotionBox = motion(Box)
+import React, { useState } from 'react';
+import { Box, Button, Heading, Input, VStack } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import CloudBackground from '../components/CloudBackground';
+// ← pull in the standalone toast you set up earlier
+import { toast } from '@/components/ui/toaster';
+
+const MotionBox = motion(Box);
 
 export default function Home() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  // configure each input with its clue as placeholder and the correct password
   const inputConfigs = [
-    { placeholder: "Paul's love interest", password: "victoria" },
-    { placeholder: "Brother Pedro, aka...", password: "pete" },
-    { placeholder: "Movie Setting", password: "vineyard" },
-    { placeholder: "Don Pedro's ingredient", password: "salt" },
-    { placeholder: "Paul's business", password: "chocolate" },
-    { placeholder: "The Bon Bon...", password: "deluxe" },
-  ]
+    { placeholder: "Paul's love interest", password: 'victoria' },
+    { placeholder: 'Brother Pedro, aka...', password: 'pete' },
+    { placeholder: 'Movie Setting', password: 'vineyard' },
+    { placeholder: "Don Pedro's ingredient", password: 'salt' },
+    { placeholder: "Paul's business", password: 'chocolate' },
+    { placeholder: 'The Bon Bon...', password: 'deluxe' },
+  ];
 
-  // track the user's entries
   const [inputs, setInputs] = useState<string[]>(
-    Array(inputConfigs.length).fill("")
-  )
+    Array(inputConfigs.length).fill('')
+  );
 
   const handleChange = (index: number, value: string) => {
-    const updated = [...inputs]
-    updated[index] = value
-    setInputs(updated)
-  }
+    const updated = [...inputs];
+    updated[index] = value;
+    setInputs(updated);
+  };
 
   const handleSubmit = () => {
     const allCorrect = inputs.every(
       (entry, idx) => entry === inputConfigs[idx].password
-    )
+    );
 
     if (allCorrect) {
-      navigate("/player")
+      navigate('/player');
     } else {
-      toaster.error({
-        title: "Incorrect entry",
+      // use your standalone toast function
+      toast({
+        title: 'Incorrect entry',
         description:
           "One or more of your answers don’t match their clues. Try again.",
-        closable: true,
-      })
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+      });
     }
-  }
+  };
 
   return (
     <CloudBackground>
@@ -84,5 +89,5 @@ export default function Home() {
         </MotionBox>
       </VStack>
     </CloudBackground>
-  )
+  );
 }

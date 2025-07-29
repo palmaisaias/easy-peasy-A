@@ -5,7 +5,7 @@ import CloudBackground from "../components/CloudBackground";
  * DigitalOcean link – replace with your actual object-storage URL
  */
 const VIDEO_SRC =
-  "https://your-digitalocean-space.nyc3.digitaloceanspaces.com/movie.mp4";
+  "https://a-grape-walk.sfo3.cdn.digitaloceanspaces.com";
 
 const Player = () => (
   <CloudBackground>
