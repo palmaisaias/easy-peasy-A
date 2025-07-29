@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import CloudBackground from '../components/CloudBackground';
 // ← pull in the standalone toast you set up earlier
-import { toast } from '@/components/ui/toaster';
+import { toast } from '../components/ui/toaster';
 
 const MotionBox = motion(Box);
 
