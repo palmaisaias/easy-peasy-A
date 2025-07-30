@@ -22,7 +22,7 @@ const CloudBackground: React.FC<{ children: React.ReactNode }> = ({
       display="flex"
       alignItems="center"
       justifyContent="center"
-      bgImage="url('https://play-lh.googleusercontent.com/proxy/cUVgmQOxGWI67trSBHHIL_soFyfNzZENWezLgl6dwlIyE9uJyjxCORMzJzYFznRmkRinWko6u_xCM7yY6KoI1iu9OetRV00nGUWwcHfWsLkk_dOG4w=s1920-w1920-h1080')"
+      bgImage="url('https://m.media-amazon.com/images/S/pv-target-images/31811239a8eefccd46211ec9eee7c36ac571ea3d93a8ab819f1974be4535d704._SX1080_FMjpg_.jpg')"
       bgSize="cover"
       bgRepeat="repeat-x"
       bgPos="0% 50%"
