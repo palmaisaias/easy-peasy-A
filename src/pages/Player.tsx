@@ -1,19 +1,34 @@
+// src/pages/Player.tsx
 'use client';
 
-import { Box, AspectRatio } from "@chakra-ui/react";
-import CloudBackground from "../components/CloudBackground";
+import React, { useEffect } from 'react';
 
-/** … */
-const VIDEO_SRC = "https://a-grape-walk.sfo3.cdn.digitaloceanspaces.com/A.Walk.In.The.Clouds.1995.720p.BluRay.x264-ESub.Hollymoviehd.mp4";
+const VIDEO_SRC =
+  'https://a-grape-walk.sfo3.cdn.digitaloceanspaces.com/A.Walk.In.The.Clouds.1995.720p.BluRay.x264-ESub.Hollymoviehd.mp4';
 
-const Player = () => (
-  <CloudBackground>
-    <Box maxW="5xl" mx="auto" p="4">
-      <AspectRatio ratio={16 / 9} w="full">
-        <video src={VIDEO_SRC} controls playsInline />
-      </AspectRatio>
-    </Box>
-  </CloudBackground>
-);
+export default function Player() {
+  useEffect(() => {
+    // Navigate the browser straight to the MP4 URL —
+    // this bypasses CORS and opens the native player
+    window.location.href = VIDEO_SRC;
+  }, []);
 
-export default Player;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        padding: '1rem',
+        textAlign: 'center',
+      }}
+    >
+      <p>Opening video…</p>
+      <a href={VIDEO_SRC} target="_blank" rel="noopener noreferrer">
+        Click here if nothing happens
+      </a>
+    </div>
+  );
+}
