@@ -10,6 +10,15 @@ import { toast } from '../components/ui/toaster';
 
 const MotionBox = motion(Box);
 
+const errorMessages = [
+  "Well, that didn’t work. Try again, champ.",
+  "Oops—looks like you flunked cloud navigation.",
+  "Are you even trying? Give it another whirl.",
+  "Nope. The clouds are laughing at you right now.",
+  "Try harder, retard",
+  "Wrong answer. iDYYIIOOOTT.",
+];
+
 export default function Home() {
   const navigate = useNavigate();
 
@@ -37,13 +46,17 @@ export default function Home() {
       entry.trim().toLowerCase() === inputConfigs[idx].password.toLowerCase()
     );
 
-    if (allCorrect) {
+       if (allCorrect) {
       navigate('/player');
     } else {
+      // pick a random funny error message
+      const description = errorMessages[
+        Math.floor(Math.random() * errorMessages.length)
+      ];
+
       toast({
         title: 'Incorrect entry',
-        description:
-          "One or more of your answers don’t match their clues. Try again.",
+        description,
         status: 'error',
         duration: 4000,
         isClosable: true,
