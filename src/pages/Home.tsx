@@ -6,7 +6,6 @@ import { Box, Button, Heading, Input, VStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import CloudBackground from '../components/CloudBackground';
-// ← pull in the standalone toast you set up earlier
 import { toast } from '../components/ui/toaster';
 
 const MotionBox = motion(Box);
@@ -34,10 +33,9 @@ export default function Home() {
   };
 
   const handleSubmit = () => {
-    const allCorrect = inputs.every((entry, idx) => {
-      // compare both sides lowercased to ignore case
-      return entry.trim().toLowerCase() === inputConfigs[idx].password.toLowerCase();
-    });
+    const allCorrect = inputs.every((entry, idx) =>
+      entry.trim().toLowerCase() === inputConfigs[idx].password.toLowerCase()
+    );
 
     if (allCorrect) {
       navigate('/player');
@@ -55,28 +53,33 @@ export default function Home() {
 
   return (
     <CloudBackground>
-      <VStack gap={8} align="stretch" w="full" maxW="xl" mx="auto" p={4}>
+      <VStack
+        w="full"
+        maxW={{ base: '100%', md: 'xl' }}
+        mx="auto"
+        p={{ base: 4, md: 8 }}
+        gap={{ base: 6, md: 8 }}
+      >
         <MotionBox
           bg="sky.50"
-          p={10}
+          p={{ base: 6, md: 10 }}
           borderRadius="xl"
           boxShadow="lg"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <VStack gap={6}>
+          <VStack gap={{ base: 4, md: 6 }}>
             <Heading
-  fontFamily="'Great Vibes', cursive"
-  fontSize="6xl"
-  color="vine.700"
-  textAlign="center"
-  letterSpacing="tight"
-  mb={6}
->
-  A Walk in the Clouds
-</Heading>
-
+              fontFamily="'Great Vibes', cursive"
+              fontSize={{ base: '4xl', md: '6xl' }}
+              color="vine.700"
+              textAlign="center"
+              letterSpacing="tight"
+              mb={{ base: 4, md: 6 }}
+            >
+              A Walk in the Clouds
+            </Heading>
 
             {inputConfigs.map((cfg, idx) => (
               <Input
@@ -87,10 +90,17 @@ export default function Home() {
                 value={inputs[idx]}
                 onChange={(e) => handleChange(idx, e.currentTarget.value)}
                 borderColor="sky.500"
+                size={{ base: 'sm', md: 'md' }}
+                fontSize={{ base: 'sm', md: 'md' }}
               />
             ))}
 
-            <Button colorScheme="sky" w="full" onClick={handleSubmit}>
+            <Button
+              colorScheme="sky"
+              w="full"
+              size={{ base: 'sm', md: 'md' }}
+              onClick={handleSubmit}
+            >
               Enter
             </Button>
           </VStack>
