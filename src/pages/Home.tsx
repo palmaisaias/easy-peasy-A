@@ -10,55 +10,65 @@ import { toast } from '../components/ui/toaster';
 
 const MotionBox = motion(Box);
 
-const errorMessages = [
-  "Well, that didn’t work. Try again, champ.",
-  "Oops—looks like you flunked cloud navigation.",
-  "Are you even trying? Give it another whirl.",
-  "Nope. The clouds are laughing at you right now.",
-  "Try harder, retard",
-  "Wrong answer. iDYYIIOOOTT.",
+const letters = Array.from({ length: 26 }, (_, i) =>
+  String.fromCharCode(65 + i),
+);
+
+const burnMessages = [
+  "Rumor has it you can’t read.",
+  "This ain’t Pretty Little Liars — try again.",
+  "Still not getting any.",
+  "Detention-worthy guess.",
+  "That’s not the A we’re looking for.",
 ];
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const inputConfigs = [
-    { placeholder: "Paul's love interest", password: 'victoria' },
-    { placeholder: 'Brother Pedro, aka...', password: 'pete' },
-    { placeholder: 'Movie Setting', password: 'vineyard' },
-    { placeholder: "Don Pedro's ingredient", password: 'salt' },
-    { placeholder: "Paul's business", password: 'chocolate' },
-    { placeholder: 'The Bon Bon...', password: 'deluxe' },
-  ];
-
-  const [inputs, setInputs] = useState<string[]>(
-    Array(inputConfigs.length).fill('')
+  const [correctLetter] = useState(
+    () => letters[Math.floor(Math.random() * letters.length)],
   );
+  const [clicked, setClicked] = useState<string[]>([]);
+  const [selected, setSelected] = useState('');
+  const [found, setFound] = useState(false);
 
-  const handleChange = (index: number, value: string) => {
-    const updated = [...inputs];
-    updated[index] = value;
-    setInputs(updated);
+  const handleLetterClick = (letter: string) => {
+    if (clicked.includes(letter) || found) return;
+
+    setClicked([...clicked, letter]);
+
+    if (letter === correctLetter) {
+      toast({
+        title: 'You found it!',
+        description: 'That’s the Scarlet Letter.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      setFound(true);
+      setSelected(letter);
+    } else {
+      const msg =
+        burnMessages[Math.floor(Math.random() * burnMessages.length)];
+      toast({
+        title: 'Nope.',
+        description: msg,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
   const handleSubmit = () => {
-    const allCorrect = inputs.every((entry, idx) =>
-      entry.trim().toLowerCase() === inputConfigs[idx].password.toLowerCase()
-    );
-
-       if (allCorrect) {
+    if (selected.trim().toUpperCase() === correctLetter) {
       navigate('/player');
     } else {
-      // pick a random funny error message
-      const description = errorMessages[
-        Math.floor(Math.random() * errorMessages.length)
-      ];
-
       toast({
-        title: 'Incorrect entry',
-        description,
+        title: 'Still wrong.',
+        description: 'Are you sure you found the right letter?',
         status: 'error',
-        duration: 4000,
+        duration: 3000,
         isClosable: true,
       });
     }
@@ -84,38 +94,65 @@ export default function Home() {
         >
           <VStack gap={{ base: 4, md: 6 }}>
             <Heading
-              fontFamily="'Great Vibes', cursive"
+              fontFamily="'Pacifico', cursive"
               fontSize={{ base: '4xl', md: '6xl' }}
-              color="vine.700"
+              color="wine.600"
               textAlign="center"
               letterSpacing="tight"
               mb={{ base: 4, md: 6 }}
             >
-              A Walk in the Clouds
+              Easy A
             </Heading>
 
-            {inputConfigs.map((cfg, idx) => (
+            {/* letter grid */}
+            <Box
+              display="grid"
+              gridTemplateColumns={{
+                base: 'repeat(4, 1fr)',
+                md: 'repeat(6, 1fr)',
+              }}
+              gap={{ base: 4, md: 6 }}
+            >
+              {letters.map((ltr) => (
+                <Button
+                  key={ltr}
+                  onClick={() => handleLetterClick(ltr)}
+                  disabled={clicked.includes(ltr) || found}
+                  colorScheme="red"
+                  variant="outline"
+                  size={{ base: 'sm', md: 'md' }}
+                >
+                  {ltr}
+                </Button>
+              ))}
+            </Box>
+
+            <Box fontSize="md" textAlign="center">
+              Only one of these letters is the password.
+            </Box>
+
+            {/* password entry */}
+            <VStack w="full" gap={2}>
               <Input
-                key={idx}
                 variant="subtle"
-                placeholder={cfg.placeholder}
-                type="password"
-                value={inputs[idx]}
-                onChange={(e) => handleChange(idx, e.currentTarget.value)}
-                borderColor="sky.500"
+                placeholder="Enter the letter"
+                maxLength={1}
+                value={selected}
+                onChange={(e) => setSelected(e.currentTarget.value)}
+                disabled={!found}
                 size={{ base: 'sm', md: 'md' }}
                 fontSize={{ base: 'sm', md: 'md' }}
               />
-            ))}
-
-            <Button
-              colorScheme="sky"
-              w="full"
-              size={{ base: 'sm', md: 'md' }}
-              onClick={handleSubmit}
-            >
-              Enter
-            </Button>
+              <Button
+                colorScheme="red"
+                w="full"
+                size={{ base: 'sm', md: 'md' }}
+                onClick={handleSubmit}
+                disabled={!found}
+              >
+                Submit
+              </Button>
+            </VStack>
           </VStack>
         </MotionBox>
       </VStack>
