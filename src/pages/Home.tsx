@@ -15,12 +15,21 @@ const letters = Array.from({ length: 26 }, (_, i) =>
 );
 
 const burnMessages = [
-  "Rumor has it you can’t read.",
-  "This ain’t Pretty Little Liars — try again.",
-  "Still not getting any.",
-  "Detention-worthy guess.",
-  "That’s not the A we’re looking for.",
+  "I've heard farts with more nuance.",
+  "My phone autocorrects smarter bullshit.",
+  "Your IQ just filed for bankruptcy.",
+  "Still waiting for the part where you make sense.",
+  "That idea died of boredom.",
+  "Congratulations, you played yourself",
+  "Facts aren't optional, dipshit.",
+  "Keep guessing; your ignorance is free entertainment.",
+  "Your brain is stuck on airplane mode.",
+  "That comment aged like warm milk.",
+  "Next time bring a coherent thought.",
+  "Spare us the verbal diarrhea.",
+  "Impressive—if mediocrity were an Olympic sport."
 ];
+
 
 export default function Home() {
   const navigate = useNavigate();
