@@ -15,19 +15,22 @@ const letters = Array.from({ length: 26 }, (_, i) =>
 );
 
 const burnMessages = [
-  "I've heard farts with more nuance.",
-  "My phone autocorrects smarter bullshit.",
-  "Your IQ just filed for bankruptcy.",
-  "Still waiting for the part where you make sense.",
-  "That idea died of boredom.",
-  "Congratulations, you played yourself",
-  "Facts aren't optional, dipshit.",
-  "Keep guessing; your ignorance is free entertainment.",
-  "Your brain is stuck on airplane mode.",
-  "That comment aged like warm milk.",
-  "Next time bring a coherent thought.",
-  "Spare us the verbal diarrhea.",
-  "Impressive—if mediocrity were an Olympic sport."
+  "Let me guess...this is Gammy",
+  "dumb",
+  "clueless",
+  "lazy",
+  "basic",
+  "ignorant",
+  "delusional",
+  "wrong",
+  "WRONG",
+  "boring",
+  "useless",
+  "dense",
+  "cringe",
+  "try charging your phone",
+  "forgettable",
+  "mediocre"
 ];
 
 
