@@ -115,6 +115,16 @@ export default function Home() {
             >
               Easy A
             </Heading>
+                        <Heading
+              fontFamily="'Arial' "
+              fontSize={{ base: '1xl', md: '2xl' }}
+              color="wine.700"
+              textAlign="center"
+              letterSpacing="tight"
+              mb={{ base: 4, md: 6 }}
+            >
+              ...since none of you can f****** SPELL
+            </Heading>
 
             {/* letter grid */}
             <Box
