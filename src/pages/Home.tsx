@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import CloudBackground from '../components/CloudBackground';
 import { toast } from '../components/ui/toaster';
 
+
 const MotionBox = motion(Box);
 
 const letters = Array.from({ length: 26 }, (_, i) =>
@@ -95,6 +96,17 @@ export default function Home() {
         p={{ base: 4, md: 8 }}
         gap={{ base: 6, md: 8 }}
       >
+      <MotionBox
+          bg="sky.50"
+          p={{ base: 6, md: 10 }}
+          borderRadius="xl"
+          boxShadow="lg"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+        </MotionBox>
+
         <MotionBox
           bg="sky.50"
           p={{ base: 6, md: 10 }}
@@ -104,6 +116,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          
           <VStack gap={{ base: 4, md: 6 }}>
             <Heading
               fontFamily="'Pacifico', cursive"

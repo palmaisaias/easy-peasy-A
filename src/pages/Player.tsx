@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import { Box, Button, Flex, Spinner, Text, VStack } from '@chakra-ui/react';
 
-const VIDEO_SRC = 'https://youtu.be/q0sNRgi-I4s?si=81SEEslcak5EUICp';
+const VIDEO_SRC = 'https://lemon-squeezy.sfo3.cdn.digitaloceanspaces.com/lemon.mp4';
 
 export default function Player() {
   useEffect(() => {
