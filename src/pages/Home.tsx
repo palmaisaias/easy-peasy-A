@@ -2,12 +2,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Box, Button, Heading, Input, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Heading,
+  Input,
+  VStack,
+  Switch,
+  Icon,        // slot-based Switch API
+} from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import CloudBackground from '../components/CloudBackground';
 import { toast } from '../components/ui/toaster';
-
 
 const MotionBox = motion(Box);
 
@@ -16,24 +23,23 @@ const letters = Array.from({ length: 26 }, (_, i) =>
 );
 
 const burnMessages = [
-  "Let me guess...this is Gammy",
-  "dumb",
-  "clueless",
-  "lazy",
-  "basic",
-  "ignorant",
-  "delusional",
-  "wrong",
-  "WRONG",
-  "boring",
-  "useless",
-  "dense",
-  "cringe",
-  "try charging your phone",
-  "forgettable",
-  "mediocre"
+  'Let me guess...this is Gammy',
+  'dumb',
+  'clueless',
+  'lazy',
+  'basic',
+  'ignorant',
+  'delusional',
+  'wrong',
+  'WRONG',
+  'boring',
+  'useless',
+  'dense',
+  'cringe',
+  'try charging your phone',
+  'forgettable',
+  'mediocre',
 ];
-
 
 export default function Home() {
   const navigate = useNavigate();
@@ -96,17 +102,7 @@ export default function Home() {
         p={{ base: 4, md: 8 }}
         gap={{ base: 6, md: 8 }}
       >
-      <MotionBox
-          bg="sky.50"
-          p={{ base: 6, md: 10 }}
-          borderRadius="xl"
-          boxShadow="lg"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-        </MotionBox>
-
+        {/* Useless on/off switch */}
         <MotionBox
           bg="sky.50"
           p={{ base: 6, md: 10 }}
@@ -116,7 +112,26 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          
+          <Switch.Root colorPalette="blue" size="lg" id="useless-switch">
+  <Switch.HiddenInput />
+  <Switch.Control />
+  {/* this is your visible label; style it however you want */}
+  <Box as="span" ml={2} color="red.500" fontSize="md" fontWeight="bold">
+    I’m Useless 😭
+  </Box>
+</Switch.Root>
+        </MotionBox>
+
+        {/* Scarlet Letter game */}
+        <MotionBox
+          bg="sky.50"
+          p={{ base: 6, md: 10 }}
+          borderRadius="xl"
+          boxShadow="lg"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <VStack gap={{ base: 4, md: 6 }}>
             <Heading
               fontFamily="'Pacifico', cursive"
@@ -128,8 +143,8 @@ export default function Home() {
             >
               Easy A
             </Heading>
-                        <Heading
-              fontFamily="'Arial' "
+            <Heading
+              fontFamily="'Arial'"
               fontSize={{ base: '1xl', md: '2xl' }}
               color="wine.700"
               textAlign="center"
