@@ -58,7 +58,7 @@ export default function Home() {
 
     if (letter === correctLetter) {
       toast({
-        title: 'You found it!',
+        title: 'You found it! If your name is Daquelita...GOOD JOB!',
         description: 'That’s the Scarlet Letter.',
         status: 'success',
         duration: 3000,
